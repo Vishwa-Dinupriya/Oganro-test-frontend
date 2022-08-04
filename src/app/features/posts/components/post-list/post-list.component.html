@@ -1,0 +1,8 @@
+<div>
+  <li *ngFor="let post of posts">
+    {{post.title+' | '+post.body}}
+    <button (click)="deletePost(post.id)">delete </button>
+    <button (click)="clickOnLike(post.id)"> {{post.like_count}} like  </button>
+    <button (click)="clickOnDislike(post.id)"> {{post.dislike_count}}dislike </button>
+  </li>
+</div>

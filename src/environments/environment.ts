@@ -3,8 +3,13 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  baseUrl: "http://localhost:3200/api/oganro-test/",
+  appUrl: "http://localhost:50114/",
+  jsonPlaceHolderUrl: "https://jsonplaceholder.typicode.com/",
+  loremPicsumUrl: "https://picsum.photos/"
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file

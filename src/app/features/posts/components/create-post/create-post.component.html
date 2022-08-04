@@ -1,0 +1,13 @@
+<form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+
+  <!-- <label for="title">Title: </label> -->
+  <input id="title" type="text" formControlName="title" placeholder="Title ">
+
+  <!-- <label for="body">Say Something: </label> -->
+  <input id="body" type="text" formControlName="body" placeholder="Write something...">
+
+  <p>Complete the form to enable button.</p>
+  <button type="submit" [disabled]="!postForm.valid">Submit</button>
+
+</form>
+

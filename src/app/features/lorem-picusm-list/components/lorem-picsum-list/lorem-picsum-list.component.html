@@ -1,0 +1,6 @@
+<div>
+  <li *ngFor="let picture of loremPics ">
+      {{picture.author}}
+      <img [src]="picture.download_url" width="100">
+  </li>
+</div>
