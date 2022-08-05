@@ -26,6 +26,8 @@ export class CreatePostComponent implements OnInit {
     // TODO: Use EventEmitter with form value
     const post: Post = this.postForm.getRawValue();;
     post.mediaKey = this.mediaKey;
+    post.like_count = 0;
+    post.dislike_count = 0;
 
     this.postService.createPost(post).subscribe((res: Post)=>{
       console.log('Post Created Successfully! '+ res)

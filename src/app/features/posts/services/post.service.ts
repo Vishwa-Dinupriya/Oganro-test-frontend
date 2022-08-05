@@ -14,20 +14,21 @@ export class PostService {
       return this.baseApiService.create('posts', post);
   }
 
-  getAll(): Observable<any>{
+  getAllPosts(): Observable<any>{
     return this.baseApiService.get('posts');
   }
+  //return this.baseAPI.get(`enterpriseuser/user/${id}`);
 
-  delete(postId: number): Observable<any>{
-    return this.baseApiService.deleteWithParams('posts', postId);
+  deletePost(postId: number): Observable<any>{
+    return this.baseApiService.delete(`posts/${postId}`);
   }
 
-  like(postId: number): Observable<any>{
-    return this.baseApiService.update('posts/like', {postId: postId});
+  likePost(postId: number): Observable<any>{
+    return this.baseApiService.update(`posts/like/${postId}`, {postId: postId});
   }
 
-  dislike(postId: number): Observable<any>{
-    return this.baseApiService.update('posts/dislike', {postId: postId});
+  dislikePost(postId: number): Observable<any>{
+    return this.baseApiService.update(`posts/dislike/${postId}`, {postId: postId});
   }
 
 }
