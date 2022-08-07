@@ -1,6 +1,4 @@
-<div>
-  <li *ngFor="let picture of loremPics ">
-      {{picture.author}}
-      <img [src]="picture.download_url" width="100">
-  </li>
+<div *ngFor="let picture of loremPics " class="mb-3 relative">
+  <img [src]="picture.download_url" alt="Snow" class="w-full rounded">
+  <div class="p-2 absolute bottom-0 font-bold text-white">Post by {{picture.author}}</div>
 </div>

@@ -1,13 +1,29 @@
-<form [formGroup]="postForm" (ngSubmit)="onSubmit()">
 
-  <!-- <label for="title">Title: </label> -->
-  <input id="title" type="text" formControlName="title" placeholder="Title ">
+  <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+    <div class="p-3 space-y-3 rounded border border-gray-200">
+      <h5 class="font-bold text-lg">New Post</h5>
+      <input class="w-full p-2 border border-gray-300 rounded" type="text" placeholder="Title" formControlName="title"/>
 
-  <!-- <label for="body">Say Something: </label> -->
-  <input id="body" type="text" formControlName="body" placeholder="Write something...">
+      <textarea class="w-full p-2 border border-gray-300 rounded" rows="6"
+        placeholder="Write sometihing" formControlName="body"></textarea>
 
-  <p>Complete the form to enable button.</p>
-  <button type="submit" [disabled]="!postForm.valid">Submit</button>
+      <div class="flex justify-between">
+        <label class="block">
+          <span class="sr-only">Choose Image</span>
+          <input type="file" class="block w-full text-sm text-slate-500
+            file:mr-4 file:py-2 file:px-4
+            file:rounded-full file:border-0
+            file:text-sm file:font-semibold
+            file:bg-blue-50 file:text-blue-700
+            hover:file:bg-blue-100
+          "
+          type="file"
+          (change)="onChange($event)"
+          />
+        </label>
 
-</form>
-
+        <button type="submit"
+          class="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Post</button>
+      </div>
+    </div>
+  </form>

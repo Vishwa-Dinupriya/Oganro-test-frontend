@@ -7,7 +7,8 @@ export const environment = {
   baseUrl: "http://localhost:3200/api/oganro-test/",
   appUrl: "http://localhost:50114/",
   jsonPlaceHolderUrl: "https://jsonplaceholder.typicode.com/",
-  loremPicsumUrl: "https://picsum.photos/"
+  loremPicsumUrl: "https://picsum.photos/",
+  imageBaseUrl: "http://localhost:3200/"
 };
 
 

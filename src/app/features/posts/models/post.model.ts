@@ -6,5 +6,5 @@ export class Post {
   dislike_count!: number;
   createdAt!: Date;
   updatedAt!: Date;
-  mediaKey!: string;
+  imageBase64!: string | ArrayBuffer | null;
 }

@@ -16,8 +16,14 @@ export class LoremPicsumListComponent implements OnInit {
   }
 
   getLoremPics(): any{
-    this.loremPicsumListService.getLoremPicsums().subscribe((res: any)=>{
-      this.loremPics = res;
+    this.loremPicsumListService.getLoremPicsums().subscribe({
+      next: res => {
+        this.loremPics = res;
+      },
+      error: error => {
+        console.log(error);
+      }
     })
+
   }
 }

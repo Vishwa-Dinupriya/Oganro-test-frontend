@@ -17,9 +17,15 @@ export class ContactsListComponent implements OnInit {
   }
 
   getContactsList(){
-     this.contactListService.getContacts().subscribe((res:any)=>{
-      this.contacts = res;
-     });
+    this.contactListService.getContacts().subscribe({
+      next: res => {
+        this.contacts = res;
+      },
+      error: error => {
+        console.log(error);
+      }
+    })
+
   }
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FileUploadService } from 'src/app/shared/services/file-upload.service';
 import { Post } from '../../models/post.model';
 import { PostService } from '../../services/post.service';
 
@@ -15,25 +16,45 @@ export class CreatePostComponent implements OnInit {
     body: ['', Validators.required]
   });
 
-  mediaKey!: string;
+  shortLink: string = "";
+  loading: boolean = false; // Flag variable
+  file!: File; // Variable to store file
+
+  image!: string;
   constructor(private fb: FormBuilder,
-              private postService: PostService) { }
+              private postService: PostService,
+              private fileUploadService: FileUploadService) { }
 
   ngOnInit(): void {
   }
 
-  onSubmit() {
+  toBase64(file: any): Promise<string | ArrayBuffer | null> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = error => reject(error); });
+  }
+
+  onChange(event: any) {
+    this.file = event.target.files[0];
+  }
+
+  async onSubmit() {
     // TODO: Use EventEmitter with form value
+
     const post: Post = this.postForm.getRawValue();;
-    post.mediaKey = this.mediaKey;
+    post.imageBase64 = await this.toBase64(this.file);
     post.like_count = 0;
     post.dislike_count = 0;
 
-    this.postService.createPost(post).subscribe((res: Post)=>{
-      console.log('Post Created Successfully! '+ res)
-    },
-    (err)=>{
-
+    this.postService.createPost(post).subscribe({
+      next: res => {
+       console.log(res);
+      },
+      error: error => {
+        console.log(error);
+      }
     })
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from '../../models/post.model';
 import { PostService } from '../../services/post.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-post-list',
@@ -8,6 +9,8 @@ import { PostService } from '../../services/post.service';
   styleUrls: ['./post-list.component.css']
 })
 export class PostListComponent implements OnInit {
+
+  imageBaseUrl: string = environment.imageBaseUrl;
 
   posts!: Post[] ;
 
@@ -25,23 +28,38 @@ export class PostListComponent implements OnInit {
   }
 
   deletePost(postId: number){
-   this.postService.deletePost(postId).subscribe((res: any)=>{
-    console.log(res);
-    this.getAllPosts();
-   })
+
+
+   this.postService.deletePost(postId).subscribe({
+    next: res => {
+      this.getAllPosts();
+    },
+    error: error => {
+      console.log(error);
+    }
+  })
+
   }
 
   clickOnLike(postId: number){
-    this.postService.likePost(postId).subscribe((res: any)=>{
-      console.log(res);
-      this.getAllPosts();
+    this.postService.likePost(postId).subscribe({
+      next: res => {
+        this.getAllPosts();
+      },
+      error: error => {
+        console.log(error);
+      }
     })
   }
 
   clickOnDislike(postId: number){
-    this.postService.dislikePost(postId).subscribe((res: any)=>{
-      console.log(res);
-      this.getAllPosts();
+    this.postService.dislikePost(postId).subscribe({
+      next: res => {
+        this.getAllPosts();
+      },
+      error: error => {
+        console.log(error);
+      }
     })
   }
 

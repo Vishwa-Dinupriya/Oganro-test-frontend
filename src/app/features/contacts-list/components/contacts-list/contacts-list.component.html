@@ -4,38 +4,23 @@
 </div> -->
 
 
- <!-- 3 column wrapper -->
-      <div class="flex-grow w-full max-w-7xl mx-auto xl:px-8 lg:flex">
-        <!-- Left sidebar & main wrapper -->
-        <div class="flex-1 min-w-0 bg-white xl:flex">
-          <div class="border-b border-gray-200 xl:border-b-0 xl:flex-shrink-0 xl:w-64 xl:border-r xl:border-gray-200 bg-white">
-            <div class="h-full pl-4 pr-6 py-6 sm:pl-6 lg:pl-8 xl:pl-0">
-              <!-- Start left column area -->
-              <div class="h-full relative" style="min-height: 12rem">
-                <div class="absolute inset-0 rounded-lg">
-                  <div class="p-3">
-                    <h4 class="mb-3 text-lg font-bold">Contacts</h4>
+<div class="grid grid-cols-1 gap-4">
+  <div *ngFor="let contact of contacts"
+    class="relative rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm flex items-center space-x-3 hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+    <div class="flex-shrink-0">
+      <img class="h-10 w-10 rounded-full"
+        src="https://xsgames.co/randomusers/avatar.php?g=male"
+        alt="">
+    </div>
+    <div class="flex-1 min-w-0">
+      <a href="#" class="focus:outline-none">
+        <span class="absolute inset-0" aria-hidden="true"></span>
+        <p class="text-sm font-medium text-gray-900 truncate">{{contact.email}}</p>
+        <p class="text-sm font-medium text-gray-900 truncate">{{contact.username}}</p>
+        <p class="text-sm text-gray-500 truncate">{{contact.phone}}</p>
+      </a>
+    </div>
+  </div>
 
-                    <div class="grid grid-cols-1 gap-4" *ngFor="let contact of contacts">
-                      <div class="relative rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm flex items-center space-x-3 hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                        <div class="flex-shrink-0">
-                          <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-                        </div>
-                        <div class="flex-1 min-w-0">
-                          <a href="#" class="focus:outline-none">
-                            <span class="absolute inset-0" aria-hidden="true"></span>
-                            <p class="text-sm font-medium text-gray-900">{{contact.email}}</p>
-                            <p class="text-sm font-medium text-gray-900">{{contact.username}}</p>
-                            <p class="text-sm text-gray-500 truncate">{{contact.phone}}</p>
-                          </a>
-                        </div>
-                      </div>
-
-                      <!-- More ... -->
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- End left column area -->
-            </div>
-          </div>
+  <!-- More ... -->
+</div>

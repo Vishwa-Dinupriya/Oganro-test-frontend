@@ -1,8 +1,29 @@
-<div>
-  <li *ngFor="let post of posts">
-    {{post.title+' | '+post.body}}
-    <button (click)="deletePost(post.id)">delete </button>
-    <button (click)="clickOnLike(post.id)"> {{post.like_count}} like  </button>
-    <button (click)="clickOnDislike(post.id)"> {{post.dislike_count}}dislike </button>
-  </li>
+<div class="bg-white mt-3" *ngFor="let post of posts">
+  <img class="border rounded-t-lg shadow-lg" style="padding: 2%;"
+    [src]="imageBaseUrl + '/' + post.id + '.jpg'">
+  <div class="bg-white border shadow p-5 text-xl text-gray-700 ">
+    <span class="font-bold text-lg"> {{post.title}} </span> <br />
+    <span class="text-sm"> {{post.body}} </span>
+  </div>
+  <div>
+    <div class="bg-white p-1 rounded-b-lg border shadow flex flex-row flex-wrap">
+
+      <div class="w-1/3 hover:bg-gray-200 text-center text-xl text-gray-700 font-semibold">
+        <button (click)="deletePost(post.id)" type="button"
+          class="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">Remove Post</button>
+      </div>
+      <div class="w-1/3 hover:bg-gray-200 border-l-4 border-r- text-center text-xl text-gray-700 font-semibold flex items-center justify-center">
+        <button (click)="clickOnLike(post.id)" type="button" class="flex items-center"> <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex items-center" viewBox="0 0 20 20" fill="currentColor">
+            <path
+              d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
+          </svg> <span class="text-sm"> {{post.like_count}} Like </span> </button>
+      </div>
+      <div class="w-1/3 hover:bg-gray-200 border-l-4 text-center text-xl text-gray-700 font-semibold flex items-center justify-center">
+        <button  (click)="clickOnDislike(post.id)" type="button" class="flex items-center"> <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex items-center" viewBox="0 0 20 20" fill="currentColor">
+            <path
+              d="M18 9.5a1.5 1.5 0 11-3 0v-6a1.5 1.5 0 013 0v6zM14 9.667v-5.43a2 2 0 00-1.105-1.79l-.05-.025A4 4 0 0011.055 2H5.64a2 2 0 00-1.962 1.608l-1.2 6A2 2 0 004.44 12H8v4a2 2 0 002 2 1 1 0 001-1v-.667a4 4 0 01.8-2.4l1.4-1.866a4 4 0 00.8-2.4z" />
+          </svg><span class="text-sm"> {{post.dislike_count}}  Dislike </span></button>
+        </div>
+    </div>
+  </div>
 </div>

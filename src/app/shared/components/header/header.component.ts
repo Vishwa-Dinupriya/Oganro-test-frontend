@@ -12,4 +12,5 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  userName: string = "Vishwa Dinupriya"
 }
