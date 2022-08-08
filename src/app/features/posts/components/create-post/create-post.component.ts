@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { FileUploadService } from 'src/app/shared/services/file-upload.service';
 import { Post } from '../../models/post.model';
+import { PostSharedService } from '../../services/post-shared.service';
 import { PostService } from '../../services/post.service';
 
 @Component({
@@ -23,7 +24,7 @@ export class CreatePostComponent implements OnInit {
   image!: string;
   constructor(private fb: FormBuilder,
               private postService: PostService,
-              private fileUploadService: FileUploadService) { }
+              private postSharedService: PostSharedService) { }
 
   ngOnInit(): void {
   }
@@ -51,6 +52,8 @@ export class CreatePostComponent implements OnInit {
     this.postService.createPost(post).subscribe({
       next: res => {
        console.log(res);
+       this.postForm.reset();
+       this.postSharedService.createPostResponse.next(res);
       },
       error: error => {
         console.log(error);

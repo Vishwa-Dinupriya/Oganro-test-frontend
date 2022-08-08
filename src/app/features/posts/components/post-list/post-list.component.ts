@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Post } from '../../models/post.model';
 import { PostService } from '../../services/post.service';
 import { environment } from 'src/environments/environment';
+import { PostSharedService } from '../../services/post-shared.service';
 
 @Component({
   selector: 'app-post-list',
@@ -14,10 +15,15 @@ export class PostListComponent implements OnInit {
 
   posts!: Post[] ;
 
-  constructor(private postService: PostService) { }
+  constructor(private postService: PostService,
+              private postSharedService: PostSharedService) {}
 
   ngOnInit(): void {
     this.getAllPosts();
+    this.postSharedService.createPostResponse.subscribe(res=>{
+      console.log(res);
+      this.getAllPosts();
+    })
   }
 
   getAllPosts(){
