@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { FileUploadService } from 'src/app/shared/services/file-upload.service';
 import { Post } from '../../models/post.model';
 import { PostSharedService } from '../../services/post-shared.service';
 import { PostService } from '../../services/post.service';
+import { ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-create-post',
@@ -11,6 +12,9 @@ import { PostService } from '../../services/post.service';
   styleUrls: ['./create-post.component.css']
 })
 export class CreatePostComponent implements OnInit {
+
+  @ViewChild('postImageInput')
+   myInputVariable!: ElementRef;
 
   postForm = this.fb.group({
     title: ['', Validators.required],
@@ -53,6 +57,7 @@ export class CreatePostComponent implements OnInit {
       next: res => {
        console.log(res);
        this.postForm.reset();
+       this.myInputVariable.nativeElement.value = "";
        this.postSharedService.createPostResponse.next(res);
       },
       error: error => {
